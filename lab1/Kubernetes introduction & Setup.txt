@@ -1,0 +1,355 @@
+KMASTER - Setup Commands.
+
+common command once you spin aws ec2 - or any other vmware image.
+-> yum update
+Steps:
+	1. Install NTP server and start service.
+	2. know all machines each other 
+		a. update all machines private ip address and host names in /etc/hosts file.
+	3. add repository to redhat repo list.	
+	4. Install etcd kube-apiserver kube-controller-manager kube-scheduler
+	5. Configure kubernetes/config
+	6. Configure apiserver
+	7. configure etcd 
+	8. start all master services.
+	systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
+	
+MINION - setup commands
+Steps:
+1. install needed packages. 
+	-->kubernetes docker
+	 yum -y install --enablerepo=virt7-docker-common-release kubernetes docker
+
+2.  Configure /etc/kubernetes/config
+3. Configure /etc/kubernetes/kubelet
+4. Start services
+ systemctl start kubelet docker kube-proxy
+
+
+
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ yum update
+    2  yum install ntp
+    3  systemctl enable ntpd
+    4  systemctl start ntpd
+    5  systemctl status ntpd
+    6  vi /etc/host
+    7  vi /etc/hosts
+    8  vi /etc/hosts
+    9  ping kmaster
+   10  ping knode1
+   11  ping knode2
+   13  vi /etc/hosts
+   
+Step 2: >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   14  cd /etc/yum.repos.d
+   15  dir
+   16  vi redhat-rhui-client-config.repo
+   17  vi rhui-load-balancers.conf
+   18  vi redhat-rhui-client-config.repo
+   19  vi redhat-rhui-client-config.repo
+   20  vi /etc/yum.repos.d/virt7-docker-common-release.repo
+   ----------
+   [virt7-docker-common-release]
+name=virt7-docker-common-release
+baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+gpgcheck=0
+----------------------
+   
+   21  yum -y install --enablerepo=virt7-docker-common-release kubernetes etcd
+   22  systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler
+   23  systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
+   24  history
+
+Step 3: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
+   open etc/kubernetes/config
+   add below lines
+   
+   # How the controller-manager, scheduler, and proxy find the apiserver
+KUBE_MASTER="--master=http://kmaster:8080"
+
+KUBE_ETCD_SERVERS="--etcd-servers=http://kmaster:2379"
+~
+vi /etc/etcd/etcd.conf
+#ETCD_MAX_WALS="5"
+#ETCD_CORS=""
+#
+#[cluster]
+#ETCD_INITIAL_ADVERTISE_PEER_URLS="http://localhost:2380,http://localhost:7001"
+# if you use different ETCD_NAME (e.g. test), set ETCD_INITIAL_CLUSTER value for this name, i.e. "test=http://..."
+#ETCD_INITIAL_CLUSTER="default=http://localhost:2380,default=http://localhost:7001"
+#ETCD_INITIAL_CLUSTER_STATE="new"
+#ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
+ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379,http://0.0.0.0:4001"
+#ETCD_DISCOVERY=""
+#ETCD_DISCOVERY_SRV=""
+#ETCD_DISCOVERY_FALLBACK="proxy"
+#ETCD_DISCOVERY_PROXY=""
+#
+#[proxy]
+#ETCD_PROXY="off"
+#
+#[security]
+#ETCD_CA_FILE=""
+#ETCD_CERT_FILE=""
+#ETCD_KEY_FILE=""
+#ETCD_PEER_CA_FILE=""
+#ETCD_PEER_CERT_FILE=""
+#ETCD_PEER_KEY_FILE=""
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+Step 4: Configure API server
+
+/etc/kubernetes/ apiserver  -- vi
+
+###
+# kubernetes system config
+#
+# The following values are used to configure the kube-apiserver
+#
+
+# The address on the local server to listen to.
+KUBE_API_ADDRESS="--address=0.0.0.0"
+
+# The port on the local server to listen on.
+KUBE_API_PORT="--port=8080"
+
+# Port minions listen on
+KUBELET_PORT="--kubelet-port=10250"
+
+# Comma separated list of nodes in the etcd cluster
+KUBE_ETCD_SERVERS="--etcd-servers=http://kmaster:2379"
+
+# Address range to use for services
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=172.31.0.0/16"
+
+# default admission control policies
+#KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
+
+# Add your own!
+
+
+-------------------------
+Configure etcd server
+
+commands
+
+   32  systemctl start kube-apiserver
+   33  systemctl stop etcd kube-apiserver kube-controller-manager kube-scheduler
+   34  pwd
+   35  cd /etc/kubernetes/
+   36  dir
+   37  ll
+   38  vi config
+   39  cd /etc/etcd
+   40  dir
+   41  vi etcd.conf
+   42  vi etcd.conf
+   
+   ------------------------------
+   
+   # [member]
+ETCD_NAME=default
+ETCD_DATA_DIR="/var/lib/etcd/default.etcd"
+#ETCD_SNAPSHOT_COUNTER="10000"
+#ETCD_HEARTBEAT_INTERVAL="100"
+#ETCD_ELECTION_TIMEOUT="1000"
+#ETCD_LISTEN_PEER_URLS="http://localhost:2380,http://localhost:7001"
+ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:4001,http://0.0.0.0:2379"
+#ETCD_MAX_SNAPSHOTS="5"
+#ETCD_MAX_WALS="5"
+#ETCD_CORS=""
+#
+#[cluster]
+#ETCD_INITIAL_ADVERTISE_PEER_URLS="http://localhost:2380,http://localhost:7001"
+# if you use different ETCD_NAME (e.g. test), set ETCD_INITIAL_CLUSTER value for this name, i.e. "test=http://..."
+#ETCD_INITIAL_CLUSTER="default=http://localhost:2380,default=http://localhost:7001"
+#ETCD_INITIAL_CLUSTER_STATE="new"
+#ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
+ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379,http://0.0.0.0:4001"
+#ETCD_DISCOVERY=""
+#ETCD_DISCOVERY_SRV=""
+#ETCD_DISCOVERY_FALLBACK="proxy"
+#ETCD_DISCOVERY_PROXY=""
+#
+#[proxy]
+#ETCD_PROXY="off"
+#
+#[security]
+#ETCD_CA_FILE=""
+#ETCD_CERT_FILE=""
+#ETCD_KEY_FILE=""
+#ETCD_PEER_CA_FILE=""
+#ETCD_PEER_CERT_FILE=""
+#ETCD_PEER_KEY_FILE=""
+
+-------------------------------------------------------------
+   43  cat etcd.conf
+   44  pwd
+   45  cd ..
+   46  dir
+   47   cd /etc/kubernetes/
+   48  dir
+   49  cd apiserver
+   50  vi apiserver
+   51  pwd
+   52  vi apiserver
+   
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ Start all master services
+ 
+   53  systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler
+   54  systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
+   55  systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler
+   56  systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler | grep "(running)"
+   57  history
+----------------------------------------
+
+ docker                x86_64     1.6.2-4.gitc3ca5bb.el7       virt7-docker-common-release          5.0 M
+ etcd                  x86_64     2.0.9-1.el7                  virt7-docker-common-release          2.9 M
+ kubernetes            x86_64     1.1.0-0.4.git2bfa9a1.el7 
+ 
+ -----------------------
+ 
+ 
+ >>>>>>>>>>>>>>>>>>>> at MINION 1
+ 
+ vi /etc/kubernetes/config
+ 
+   1  yum update
+    2  yum install ntp
+    3  systemctl enable ntpd
+    4  systemctl start ntpd
+    5  systemctl status ntpd
+    6  clear
+    7  vi /etc/hosts
+    8  ping kmaster
+    9  ping knode2
+   10  ping knode1
+   11  clear
+   12  vi /etc/yum.repos.d/virt7-docker-common-release.repo
+   13  yum --enablerepo=virt7-docker-common-release
+   14  yum update
+   15  yum -y install --enablerepo=virt7-docker-common-release etcd kubernetes docker
+   16  pwd
+   17  vi /etc/kubernetes/config
+   18  history----
+   
+   -----------------------------
+   vi /etc/kubernetes/kubelet
+   
+   ###
+# kubernetes kubelet (minion) config
+
+# The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)
+KUBELET_ADDRESS="--address=0.0.0.0"
+
+# The port for the info server to serve on
+KUBELET_PORT="--port=10250"
+
+# You may leave this blank to use the actual hostname
+KUBELET_HOSTNAME="--hostname-override=knode1"
+
+# location of the api-server
+KUBELET_API_SERVER="--api-servers=http://kmaster:8080"
+
+# Add your own!
+KUBELET_ARGS=""
+
+
+>>>>>>>>>>>>>>>>>>>  kmaster
+58  systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler | grep "(running)"
+   59  vi /etc/hosts
+   60  vi /etc/kubernetes/config
+   61  kubectl get nodes
+   62  kubectl describe nodes knode1
+   63  kubectl get nodes
+   64  kubectl get pods
+   65  history
+>>>>>>>>>>>>>>>>>>>>
+ AT MINION
+ 
+     1  yum update
+    2  yum install ntp
+    3  systemctl enable ntpd
+    4  systemctl start ntpd
+    5  systemctl status ntpd
+    6  clear
+    7  vi /etc/hosts
+    8  ping kmaster
+    9  ping knode2
+   10  ping knode1
+   11  clear
+   12  vi /etc/yum.repos.d/virt7-docker-common-release.repo
+   13  yum --enablerepo=virt7-docker-common-release
+   
+   -------------
+   [virt7-docker-common-release]
+name=virt7-docker-common-release
+baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+gpgcheck=0
+   -----------
+   14  yum update
+   15  yum -y install --enablerepo=virt7-docker-common-release etcd kubernetes docker
+   16  pwd
+   17  vi /etc/kubernetes/config
+   18  history
+   19  plwd
+   20  ll
+   21  dir
+   22  pwd
+   23  vi /etc/kubernetes/kubelet
+   24  systemctl enable kube-proxy kubelet docker
+   25  systemctl start kube-proxy kubelet docker
+   26  systemctl status kube-proxy kubelet docker | grep active
+
+    16  
+	pwd
+   17  vi /etc/kubernetes/config
+   18  history
+   19  plwd
+   20  ll
+   21  dir
+   22  pwd
+   23  vi /etc/kubernetes/kubelet
+   
+   >>>>>>>>>>>>>>>>>>>>>>>>>
+   ###
+# kubernetes kubelet (minion) config
+
+# The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)
+KUBELET_ADDRESS="--address=0.0.0.0"
+
+# The port for the info server to serve on
+KUBELET_PORT="--port=10250"
+
+# You may leave this blank to use the actual hostname
+KUBELET_HOSTNAME="--hostname-override=knode1"
+
+# location of the api-server
+KUBELET_API_SERVER="--api-servers=http://kmaster:8080"
+
+# Add your own!
+KUBELET_ARGS=""
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+   24  systemctl enable kube-proxy kubelet docker
+   25  systemctl start kube-proxy kubelet docker
+   26  systemctl status kube-proxy kubelet docker | grep active
+   27  dir
+   28  ls /etc/kubernetes
+   29  cd /etc/kubernetes/
+   30  dir
+   31  vi proxy
+   32  pwd
+   33  docker images
+   34  exit
+   35  cd /var/run
+   36  dir
+   37  ls -l
+   38  chmod 666 docker.sock
+   39  exit
+   40  hsitory
+   41  history
+
+
