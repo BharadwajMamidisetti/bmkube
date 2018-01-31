@@ -14,4 +14,22 @@ spec:
       ports:
         - containerPort: 80
 		
+		
+When trying to execute below command
+
+[ec2-user@ip-172-31-16-208 builds]$ kubectl create -f pod_nginx.yaml
+Error from server: error when creating "pod_nginx.yaml": Pod "nginx" is forbidden: no API token found for service account default/default, retry after the token is automatically created and added to the service account
+
+
+faced no API token issue
+
+Resolution:
+
+go to /etc/kubernetes/apiserver   - > disbale admission control tag.
+
+
+		
+
+
+		
 
