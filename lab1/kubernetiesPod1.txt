@@ -1,0 +1,17 @@
+Pods Creation in Kubernetes:
+------------------------------
+
+@kmaster
+[root@ip-172-31-16-208 builds]# cat pod_nginx.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.7.9
+      ports:
+        - containerPort: 80
+		
+

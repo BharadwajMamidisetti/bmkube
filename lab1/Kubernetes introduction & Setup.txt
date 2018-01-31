@@ -4,13 +4,29 @@ common command once you spin aws ec2 - or any other vmware image.
 -> yum update
 Steps:
 	1. Install NTP server and start service.
-	2. know all machines each other 
+	master2. know all machines each other 
 		a. update all machines private ip address and host names in /etc/hosts file.
-	3. add repository to redhat repo list.	
-	4. Install etcd kube-apiserver kube-controller-manager kube-scheduler
+	master3. add repository to redhat repo list.	
+	master4. Install etcd kube-apiserver kube-controller-manager kube-scheduler
+	-- >yum -y install --enablerepo=virt7-docker-common-release etcd
+   --> yum -y install kubernetes
+   note : etcd and kubernetes installation required . All other packages are dependencies.
+   
+
+	
 	5. Configure kubernetes/config
-	6. Configure apiserver
+		- udpate KUBE_MASTER
+		- add and update ETCD server 
+	6. Configure apiserver - /etc/kubernetes/apiserver
+		- KUBE_API_ADDRESS
+		KUBE_API_PORT
+		KUBE_ETCD_SERVERS
+		KUBE_SERVICE_ADDRESSES
+		
 	7. configure etcd 
+		/etc/etcd/etcd.conf
+		-- add or enable ETCD_LISTEN_CLIENT_URLS
+		-- add or enable ETCD_ADVERTISE_CLIENT_URLS
 	8. start all master services.
 	systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
 	
@@ -24,15 +40,21 @@ Steps:
 3. Configure /etc/kubernetes/kubelet
 4. Start services
  systemctl start kubelet docker kube-proxy
-
+c
 
 
  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ PreRequirements:
+ 
  yum update
     2  yum install ntp
     3  systemctl enable ntpd
     4  systemctl start ntpd
     5  systemctl status ntpd
+	
+yum install ntp -y  & systemctl enable ntpd & systemctl start ntpd & systemctl status ntpd	
+	
+Step 1L 	
     6  vi /etc/host
     7  vi /etc/hosts
     8  vi /etc/hosts
@@ -41,25 +63,40 @@ Steps:
    11  ping knode2
    13  vi /etc/hosts
    
-Step 2: >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-   14  cd /etc/yum.repos.d
-   15  dir
-   16  vi redhat-rhui-client-config.repo
-   17  vi rhui-load-balancers.conf
-   18  vi redhat-rhui-client-config.repo
-   19  vi redhat-rhui-client-config.repo
-   20  vi /etc/yum.repos.d/virt7-docker-common-release.repo
+master3: >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+cd /etc/yum.repos.d
+  
+vi /etc/yum.repos.d/virt7-docker-common-release.repo
    ----------
    [virt7-docker-common-release]
 name=virt7-docker-common-release
 baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
 gpgcheck=0
 ----------------------
-   
-   21  yum -y install --enablerepo=virt7-docker-common-release kubernetes etcd
-   22  systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler
-   23  systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
-   24  history
+master4:
+   yum update
+yum -y install --enablerepo=virt7-docker-common-release kubernetes etcd
+systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler
+systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
+
+>>>>>>>>>>>>>>>
+Kubeneties packages:
+
+Installed:
+  kubernetes.x86_64 0:1.1.0-0.4.git2bfa9a1.el7
+
+Dependency Installed:
+  docker.x86_64 0:1.6.2-4.gitc3ca5bb.el7
+  kubernetes-client.x86_64 0:1.1.0-0.4.git2bfa9a1.el7
+  kubernetes-master.x86_64 0:1.1.0-0.4.git2bfa9a1.el7
+  kubernetes-node.x86_64 0:1.1.0-0.4.git2bfa9a1.el7
+  socat.x86_64 0:1.7.3.2-2.el7
+  
+  
+  socat : command line based utility that establishes two bi directional byte steams and transfer data between them.
+  
+  >>>>>>>>>>>>>>>>>>>
+
 
 Step 3: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
    open etc/kubernetes/config
