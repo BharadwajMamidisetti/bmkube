@@ -1,0 +1,77 @@
+sudo kill -SIGINT $(pidof kube-apiserver kubelet etcd)
+ ls ~/default.etcd/
+ ls ~/default.etcd/member/snap/db 
+ rm -Rf ~/default.etcd/
+ ls /var/lib/kubelet/
+ ls /var/lib/kubelet/pods/
+ sudo rm -Rf  /var/lib/kubelet/
+ pidof etcd kube-apiserver kubelet
+ docker container ls -qa
+ ping -c 12 yahoo.com
+ history
+ ls
+ cd ..
+ dir
+ cd ~
+ ls
+ vi kubeconfig.yaml 
+ vi testpod.yaml 
+ pwd
+ ls
+ mkdir kubelet
+ cd k
+ cd kubelet/
+ dir
+ vim pod.yaml
+ ping -c 10 yahoo.com
+ docker container ls
+ docker container ls --no-trunc --format "table {{.Image}}"
+ kubectl get nodes
+ history
+
+ sh 3_startKubelet.sh 
+ sudo ~/k8s/_output/bin/kubelet --pod-manifest-path=/home/user/kubelet/pod.yaml 
+ sudo ~/k8s/_output/bin/kubelet --pod-manifest-path=/home/user/kubelet/pod.yaml --fail-swap-on=false
+ pidof kubelet
+ cd ..
+ dir
+ cd kubelet/
+ dir
+ vi pod.yaml 
+ pwd
+ sudo ~/k8s/_output/bin/kubelet --pod-manifest-path=/home/user/kubelet/pod.yaml --fail-swap-on=false
+
+
+
+0717 14:37:31.927784    6672 container_manager_linux.go:288] Creating device plugin handler: false
+---->>> I0717 14:37:31.928059    6672 kubelet.go:275] Adding manifest file: /home/user/kubelet/pod.yaml
+W0717 14:37:31.932102    6672 kubelet_network.go:69] Hairpin mode set to "promiscuous-bridge" but kubenet is not enabled, falling back to "hairpin-veth"
+I0717 14:37:31.932243    6672 kubelet.go:520] Hairpin mode set to "hairpin-veth"
+W0717 14:37:31.935683    6672 cni.go:196] Unable to update cni config: No networks found in /etc/cni/net.d
+I0717 14:37:31.973176    6672 docker_service.go:207] Docker cri networking managed by kubernetes.io/no-op
+I0717 14:37:32.002283    6672 docker_service.go:212] Docker Info: &{ID:5A6O:TW46:O3LY:ECAD:CSIK:E7SX:W3SI:7J7G:7HBI:DOPH:UKEJ:CEB4 Containers:3 ContainersRunning:3 ContainersPaused:0 ContainersStopped:0 Images:4 Driver:overlay2 DriverStatus:[[Backing Filesystem extfs] [Supports d_type true] [Native Overlay Diff true]] SystemStatus:[] Plugins:{Volume:[local] Network:[bridge host macvlan null overlay] Authorization:[] Log:[awslogs fluentd gcplogs gelf journald json-file logentries splunk syslog]} MemoryLimit:true SwapLimit:false KernelMemory:true CPUCfsPeriod:true CPUCfsQuota:true CPUShares:true CPUSet:true IPv4Forwarding:true BridgeNfIptables:true BridgeNfIP6tables:true Debug:false NFd:34 OomKillDisable:true NGoroutines:45 SystemTime:2018-07-17T14:37:31.976327035-07:00 LoggingDriver:json-file CgroupDriver:cgroupfs NEventsListener:0 KernelVersion:4.4.0-130-generic OperatingSystem:Ubuntu 16.04.1 LTS OSType:linux Architecture:x86_64 IndexServerAddress:https://index.docker.io/v1/ RegistryConfig:0xc42031e850 NCPU:2 MemTotal:4143464448 GenericResources:[] DockerRootDir:/var/lib/docker HTTPProxy: HTTPSProxy: NoProxy: Name:nodea Labels:[] ExperimentalBuild:false ServerVersion:18.03.1-ce ClusterStore: ClusterAdvertise: Runtimes:map[runc:{Path:docker-runc Args:[]}] DefaultRuntime:runc Swarm:{NodeID: NodeAddr: LocalNodeState:inactive ControlAvailable:false Error: RemoteManagers:[] Nodes:0 Managers:0 Cluster:<nil>} LiveRestoreEnabled:false Isolation: InitBinary:docker-init ContainerdCommit:{ID:773c489c9c1b21a6d78b5c538cd395416ec50f88 Expected:773c489c9c1b21a6d78b5c538cd395416ec50f88} RuncCommit:{ID:4fc53a81fb7c994640722ac585fa9ca548971871 Expected:4fc53a81fb7c994640722ac585fa9ca548971871} InitCommit:{ID:949e6fa Expected:949e6fa} SecurityOptions:[name=apparmor name=seccomp,profile=default]}
+I0717 14:37:32.002428    6672 docker_service.go:225] Setting cgroupDriver to cgroupfs
+I0717 14:37:32.049360    
+
+
+============================================
+
+3.  HTTP end point
+
+Clean up all runnining containers
+
+user@nodea:~/kubelet$ docker container rm $(docker container stop $(docker container ls -qa))
+8485441e4e57
+31d98e616c20
+user@nodea:~/kubelet$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+user@nodea:~/kubelet$ 
+
+
+Clean up Kubernetes state.
+
+user@nodea:~/kubelet$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+user@nodea:~/kubelet$ sudo rm -Rf /var/lib/kubelet/
+[sudo] password for user: 
+user@nodea:~/kubelet$ 

@@ -40,4 +40,19 @@ Ans :
 	
 		$ docker container rm $(docker container stop $(docker container ls -qa ))
 		
-		
+
+3. How do you start Kubelet using files.
+
+	* When you run the kubelet you can supply a single manifest file ( or several in a directory ) as a command line argument.  
+	* On kubelet startup these manifests will start prior to the manifests supplied by the API server.
+	  If no kube-apiserver is supplied the kubelet will simply run these manifests independently.
+	  
+	  
+	 Syntax :
+	 
+	 --pod-manifest-path=""  - path to the pod spec file or directory of files
+	 --file-check-frequency=20s  - duration between checking config files or new data.
+	 
+	 
+	 
+	

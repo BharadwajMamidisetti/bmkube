@@ -1,0 +1,119 @@
+243  sudo ~/k8s/_output/bin/kube-apiserver --etcd-servers=http://localhost:2379 --service-cluster-ip-range=10.0.0.0/16
+  244  ping -c 1 yahoo.com
+  245  ping -c 10 yahoo.com
+  246  history
+  247  sudo ~/k8s/_output/bin/kubelet --kubeconfig=/home/user/kubeconfig.yaml --fail-swap-on=false
+  248  kubectl get nodes
+  249  curl http://localhost:8080/api/v1/nodes && echo
+  250  kubectl create -f testpod.yaml
+  251  kubectl get pods
+  252  kubectl get pods status
+  253  kubectl get pods
+  254  kubectl describe pod nginx
+  255  clear
+  256  kubectl describe pod nginx
+  257  kubectl get pod nginx -o custom-columns='IP:{.status.podIP}'
+  258  curl -I 172.17.0.2
+  259  sudo apt-get install jq -y
+  260  curl -s http://localhost:8080/api/v1/pods 
+  261  docker network inspect bridge
+  262  sudo poweroff
+  263  ping -c 10 yahoo.com
+  264  exit
+  265  etcd
+  266  history
+  267  sudo ~/k8s/_output/bin/kube-apiserver --etcd-servers=http://localhost:2379 --service-cluster-ip-range=10.0.0.0/16
+  268  dir
+  269  mkdir scripts
+  270  cd scripts/
+  271  vi 2_startAPIserver.sh
+  272  sudo ~/k8s/_output/bin/kubelet --kubeconfig=/home/user/kubeconfig.yaml --fail-swap-on=false
+  273  ls
+  274  vi 3_startKubelet.sh
+  275  ls
+  276  curl -s http://localhost:8080/api/v1/pods 
+  277  kubectl get nodes
+  278  kubectl get pods
+  279  curl -s http://localhost:8080/api/v1/pods 
+  280  kubectl get pods
+  281  ls
+  282  kubectl get pods
+  283  curl -I 172.17.0.2
+  284  ls
+  285  cd ..
+  286  dir
+  287  vi kubeconfig.yaml 
+  288  vi testpod.yaml 
+  289  kubectl create -f testpod.yaml 
+  290  kubectl get pods
+  291  kubectl get pods --show-all
+  292  kubectl delete pod nginx
+  293  kubectl get pods
+  294  kubectl create -f testpod.yaml 
+  295  curl -I 172.17.0.2
+  296  kubectl describe pod nginx
+  297  kubectl get pod nginx -o custom-columns='IP:{.status.podIP}'
+  298  kubectl get pods
+  299  ping -c yahoo.com
+  300  ping -c 2 yahoo.com
+  301  ping -t  yahoo.com
+  302  ping  yahoo.com
+  303  ping -c 2 yahoo.com
+  304  ping  yahoo.com
+  305  ping -t  yahoo.com
+  306  ping -t 50  yahoo.com
+  307  kubectl get pods
+  308  ping yahoo.com
+  309  service network restart
+  310  sudo service network-manager restart
+  311  ping -c 10 yahoo.com
+  312  sudo ifconfig eth0 down && sudo ifconfig eth0 up
+  313  ifconfig 
+  314  kubectl get nodes
+  315  kubectl get pods
+  316  sudo ifconfig enp0s3 down && sudo ifconfig enp0s3 up
+  317  ping -c 10 yahoo.com
+  318  sudo ifconfig
+  319  ping -c 12 yahoo.com
+  320  sudo reboot
+  321  cd ..
+  322  curl -I 172.17.0.2
+  323  kubectl get pods
+  324  kubectl delete pod nginx
+  325  kubectl create -f testpod.yaml 
+  326  kubectl get pods
+  327  docker network inspect bridge
+  328  curl -I 172.17.0.2
+  329  ifconfig
+  330  curl -s --unix-socket /var/run/docker.sock http:/networks/bridge
+  331  curl -s --unix-socket /var/run/docker.sock http://networks/bridge
+  332  curl -s --unix-socket /var/run/docker.sock http:/networks/bridge
+  333  pwd
+  334  cd scripts/
+  335  dir
+  336  docker netowrk inspect bridge
+  337  docker network inspect bridge
+  338  docker network inspect bridge | jq -r '.[] | select(.Name=="bridge"'
+  339  docker network inspect bridge | jq -r '.[] | select(.Name=="bridge")'
+  340  docker network inspect bridge
+  341  docker network inspect bridge | jq -r '.[] | select(.Name=="bridge")'
+  342  docker network inspect bridge | jq -r '.[] | select(.Name=="bridge").IPAM'
+  343  docker network inspect bridge | jq -r '.[] | select(.Name=="bridge").IPAM.Config'
+  344  docker network inspect bridge | jq -r '.[] | select(.Name=="bridge").IPAM.Config[].subnet'
+  345  docker network inspect bridge | jq -r '.[] | select(.Name=="bridge").IPAM.Config[].Subnet'
+  346  kubectl get pod -o=custom-columns=Name:.metadata.name,hostIP:.status.hostIP,podIP:status.podIP
+  347  kubectl get pod
+  348  kubectl describe pod nginx
+  349  kubectl get pod -o=custom-columns=Name:.metadata.name,hostIP:.status.hostIP,podIP:status.podIP
+  350  kubectl get pod -o=custom-columns=Name:.metadata.name,hostIPP:.status.hostIP,podIP:status.podIP
+  351  sudo kill -SIGINT $(pidof kube-apiserver kubelet etcd)
+  352  ls ~/default.etcd/
+  353  ls ~/default.etcd/member/snap/db 
+  354  rm -Rf ~/default.etcd/
+  355  ls /var/lib/kubelet/
+  356  ls /var/lib/kubelet/pods/
+  357  sudo rm -Rf  /var/lib/kubelet/
+  358  pidof etcd kube-apiserver kubelet
+  359  docker container ls -qa
+  360  ping -c 12 yahoo.com
+  361  history
