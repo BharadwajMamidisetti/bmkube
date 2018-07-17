@@ -15,5 +15,29 @@ Additional ways that Kubelet get podspecs
 	2. HTTP endpoint - HTTP endpoint passed as a parameter on the command line. ( checked every 20 secs ( configurable))
 	3. HTTP Server - The Kubelet can also listen for HTTP manifest posts.
 	
+2. How to stop all cluster components in Kubernetes? And remove cluster state?
+
+Ans :
+	1. Kill all process using kill command.
+	
+		sudo kill -SIGINT $(pidof kube-apiserver kubelet etcd)
+	
+	2. Before you restart your cluster, clear the kube-apiserver cluster state by removing etcd backing store.
+	
+		$rm -RF ~/default.etcd/
+		
+	3. Kubelet also caches its state on disk.   You can eliminate Kubelet's cached state by stopping kubelet and then removing the kubelet's backing store as well.
+	
+		$ sudo rm -RF /var/lib/kubelet
+	** This is a good remedy for components that will not restart due to preexisting state that is out of synch with the rest of the cluster
+	
+	4. Recheck all of the Kubernetes services are stopped.
+	
+		$ pidof etcd kube-apiserver kubelet
 	
 	
+	5. In addition to K8s components, we need to clean up what Docker is currently running.
+	
+		$ docker container rm $(docker container stop $(docker container ls -qa ))
+		
+		
