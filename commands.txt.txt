@@ -1,0 +1,3 @@
+# To kill kubernetes process in one shot.
+sudo kill -SIGINT $(pidof kube-apiserver kubelet etcd)
+
