@@ -1,0 +1,19 @@
+1. Describe Kubelet.
+
+Kubelet - 
+	* Primary node agent that runs on each node in K cluster.
+	* Works in terms of Podspecs.
+	* A podspec is a YAML or JSON object that describes a pod.
+	* Kubelet receies podspec through API server
+	API Server ---> podspecs ---> Kubelet.
+	
+	* Kubelet ensures that containers described in the podspecs are running and healthy.
+	
+Additional ways that Kubelet get podspecs
+
+	1. File - --pod-manifest-path switch can be used to pass a path containing pods to run on startup. This path is rechecked every 20 sec ( configurable with a flag)
+	2. HTTP endpoint - HTTP endpoint passed as a parameter on the command line. ( checked every 20 secs ( configurable))
+	3. HTTP Server - The Kubelet can also listen for HTTP manifest posts.
+	
+	
+	
