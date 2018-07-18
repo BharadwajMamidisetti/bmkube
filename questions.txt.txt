@@ -93,6 +93,13 @@ Schedular needs to take account
 Workload specific requirements will be exposed through the API as necessary.
 
 
+7. Tell me about how the leader election takes place in Kubernetes schedular?
+
+Note that while many API servers can run in parallel ( etcd ensures state is always consistent) only one schedular may run within the cluster to avoid scheduling conflicts.
+
+For this reason - the schedular causes an election using etcd to determine which of the possibly several schedulars running will become the leader.  All other schedulars simply monitor the leader for failure.  If the leader fails , the remaining schedulars elect an new leader.
+
+
 
 
 
