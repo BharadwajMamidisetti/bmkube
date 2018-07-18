@@ -44,7 +44,8 @@ sudo kill -SIGINT $(pidof kube-apiserver kubelet etcd)
 
 
 0717 14:37:31.927784    6672 container_manager_linux.go:288] Creating device plugin handler: false
----->>> I0717 14:37:31.928059    6672 kubelet.go:275] Adding manifest file: /home/user/kubelet/pod.yaml
+---->>> I0717 14:37:31.928059    6672 kubelet.go:275] Sir
+ manifest file: /home/user/kubelet/pod.yaml
 W0717 14:37:31.932102    6672 kubelet_network.go:69] Hairpin mode set to "promiscuous-bridge" but kubenet is not enabled, falling back to "hairpin-veth"
 I0717 14:37:31.932243    6672 kubelet.go:520] Hairpin mode set to "hairpin-veth"
 W0717 14:37:31.935683    6672 cni.go:196] Unable to update cni config: No networks found in /etc/cni/net.d
@@ -74,4 +75,98 @@ user@nodea:~/kubelet$ docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 user@nodea:~/kubelet$ sudo rm -Rf /var/lib/kubelet/
 [sudo] password for user: 
+user@nodea:~/kubelet$ 
+
+
+
+user@nodea:~/kubelet$ sudo ~/k8s/_output/bin/kubelet --manifest-url=https://raw.githubusercontent.com/sudhabharadwajm/bmkube/master/rx100lab2/httpPod.yaml --fail-swap-on=false
+
+=============
+I0717 15:23:26.068892    8117 kubelet.go:281] Adding manifest url "https://raw.githubusercontent.com/sudhabharadwajm/bmkube/master/rx100lab2/httpPod.yaml" with HTTP header map[]
+===========
+
+
+
+
+
+I0717 15:23:25.987123    8117 feature_gate.go:162] feature gates: map[]
+I0717 15:23:25.987285    8117 controller.go:114] kubelet config controller: starting controller
+I0717 15:23:25.987313    8117 controller.go:118] kubelet config controller: validating combination of defaults and flags
+I0717 15:23:26.008888    8117 client.go:75] Connecting to docker on unix:///var/run/docker.sock
+I0717 15:23:26.008922    8117 client.go:95] Start docker client with request timeout=2m0s
+W0717 15:23:26.011594    8117 cni.go:196] Unable to update cni config: No networks found in /etc/cni/net.d
+I0717 15:23:26.018241    8117 feature_gate.go:162] feature gates: map[]
+W0717 15:23:26.018385    8117 server.go:289] --cloud-provider=auto-detect is deprecated. The desired cloud provider should be set explicitly
+W0717 15:23:26.018476    8117 server.go:324] standalone mode, no API client
+I0717 15:23:26.018804    8117 manager.go:149] cAdvisor running in container: "/sys/fs/cgroup/cpu,cpuacct/user.slice"
+W0717 15:23:26.038695    8117 manager.go:157] unable to connect to Rkt api service: rkt: cannot tcp Dial rkt api service: dial tcp [::1]:15441: connect: connection refused
+W0717 15:23:26.038860    8117 manager.go:166] unable to connect to CRI-O api service: Get http://%2Fvar%2Frun%2Fcrio.sock/info: dial unix /var/run/crio.sock: connect: no such file or directory
+I0717 15:23:26.058070    8117 fs.go:139] Filesystem UUIDs: map[5c531b9f-61c5-4cf7-8f2e-108c320048c3:/dev/sda1 c1cc2664-0e23-4464-a1eb-920d5a1a09b5:/dev/sda5]
+I0717 15:23:26.058115    8117 fs.go:140] Filesystem partitions: map[tmpfs:{mountpoint:/run major:0 minor:18 fsType:tmpfs blockSize:0} /dev/sda1:{mountpoint:/ major:8 minor:1 fsType:ext4 blockSize:0}]
+I0717 15:23:26.059582    8117 manager.go:216] Machine: {NumCores:2 CpuFrequency:2399998 MemoryCapacity:4143464448 HugePages:[{PageSize:2048 NumPages:0}] MachineID:bee6c49b3cd47a63d7b5ff7f5810f91f SystemUUID:C8FD6F69-B948-4A97-82D1-592246990153 BootID:daa34297-e02f-4b21-b622-4f52e9fe3755 Filesystems:[{Device:tmpfs DeviceMajor:0 DeviceMinor:18 Capacity:414347264 Type:vfs Inodes:505794 HasInodes:true} {Device:/dev/sda1 DeviceMajor:8 DeviceMinor:1 Capacity:29457772544 Type:vfs Inodes:1835008 HasInodes:true}] DiskMap:map[8:0:{Name:sda Major:8 Minor:0 Size:32212254720 Scheduler:deadline}] NetworkDevices:[{Name:enp0s3 MacAddress:08:00:27:28:f5:fc Speed:1000 Mtu:1500}] Topology:[{Id:0 Memory:4143464448 Cores:[{Id:0 Threads:[0] Caches:[{Size:32768 Type:Data Level:1} {Size:32768 Type:Instruction Level:1} {Size:262144 Type:Unified Level:2} {Size:3145728 Type:Unified Level:3}]} {Id:1 Threads:[1] Caches:[{Size:32768 Type:Data Level:1} {Size:32768 Type:Instruction Level:1} {Size:262144 Type:Unified Level:2} {Size:3145728 Type:Unified Level:3}]}] Caches:[]}] CloudProvider:Unknown InstanceType:Unknown InstanceID:None}
+I0717 15:23:26.060907    8117 manager.go:222] Version: {KernelVersion:4.4.0-130-generic ContainerOsVersion:Ubuntu 16.04.1 LTS DockerVersion:18.03.1-ce DockerAPIVersion:1.37 CadvisorVersion: CadvisorRevision:}
+W0717 15:23:26.061443    8117 server.go:232] No api server defined - no events will be sent to API server.
+I0717 15:23:26.061546    8117 server.go:425] --cgroups-per-qos enabled, but --cgroup-root was not specified.  defaulting to /
+I0717 15:23:26.068583    8117 container_manager_linux.go:252] container manager verified user specified cgroup-root exists: /
+I0717 15:23:26.068649    8117 container_manager_linux.go:257] Creating Container Manager object based on Node Config: {RuntimeCgroupsName: SystemCgroupsName: KubeletCgroupsName: ContainerRuntime:docker CgroupsPerQOS:true CgroupRoot:/ CgroupDriver:cgroupfs ProtectKernelDefaults:false NodeAllocatableConfig:{KubeReservedCgroupName: SystemReservedCgroupName: EnforceNodeAllocatable:map[pods:{}] KubeReserved:map[] SystemReserved:map[] HardEvictionThresholds:[{Signal:memory.available Operator:LessThan Value:{Quantity:100Mi Percentage:0} GracePeriod:0s MinReclaim:<nil>} {Signal:nodefs.available Operator:LessThan Value:{Quantity:<nil> Percentage:0.1} GracePeriod:0s MinReclaim:<nil>} {Signal:nodefs.inodesFree Operator:LessThan Value:{Quantity:<nil> Percentage:0.05} GracePeriod:0s MinReclaim:<nil>}]} ExperimentalQOSReserved:map[] ExperimentalCPUManagerPolicy:none ExperimentalCPUManagerReconcilePeriod:10s}
+I0717 15:23:26.068768    8117 container_manager_linux.go:288] Creating device plugin handler: false
+I0717 15:23:26.068892    8117 kubelet.go:281] Adding manifest url "https://raw.githubusercontent.com/sudhabharadwajm/bmkube/master/rx100lab2/httpPod.yaml" with HTTP header map[]
+W0717 15:23:26.075182    8117 kubelet_network.go:69] Hairpin mode set to "promiscuous-bridge" but kubenet is not enabled, falling back to "hairpin-veth"
+I0717 15:23:26.075226    8117 kubelet.go:520] Hairpin mode set to "hairpin-veth"
+W0717 15:23:26.077993    8117 cni.go:196] Unable to update cni config: No networks found in /etc/cni/net.d
+I0717 15:23:26.094301    8117 docker_service.go:207] Docker cri networking managed by kubernetes.io/no-op
+I0717 15:23:26.114349    8117 docker_service.go:212] Docker Info: &{ID:5A6O:TW46:O3LY:ECAD:CSIK:E7SX:W3SI:7J7G:7HBI:DOPH:UKEJ:CEB4 Containers:0 ContainersRunning:0 ContainersPaused:0 ContainersStopped:0 Images:6 Driver:overlay2 DriverStatus:[[Backing Filesystem extfs] [Supports d_type true] [Native Overlay Diff true]] SystemStatus:[] Plugins:{Volume:[local] Network:[bridge host macvlan null overlay] Authorization:[] Log:[awslogs fluentd gcplogs gelf journald json-file logentries splunk syslog]} MemoryLimit:true SwapLimit:false KernelMemory:true CPUCfsPeriod:true CPUCfsQuota:true CPUShares:true CPUSet:true IPv4Forwarding:true BridgeNfIptables:true BridgeNfIP6tables:true Debug:false NFd:20 OomKillDisable:true NGoroutines:34 SystemTime:2018-07-17T15:23:26.10107349-07:00 LoggingDriver:json-file CgroupDriver:cgroupfs NEventsListener:0 KernelVersion:4.4.0-130-generic OperatingSystem:Ubuntu 16.04.1 LTS OSType:linux Architecture:x86_64 IndexServerAddress:https://index.docker.io/v1/ RegistryConfig:0xc42093b260 NCPU:2 MemTotal:4143464448 GenericResources:[] DockerRootDir:/var/lib/docker HTTPProxy: HTTPSProxy: NoProxy: Name:nodea Labels:[] ExperimentalBuild:false ServerVersion:18.03.1-ce ClusterStore: ClusterAdvertise: Runtimes:map[runc:{Path:docker-runc Args:[]}] DefaultRuntime:runc Swarm:{NodeID: NodeAddr: LocalNodeState:inactive ControlAvailable:false Error: RemoteManagers:[] Nodes:0 Managers:0 Cluster:<nil>} LiveRestoreEnabled:false Isolation: InitBinary:docker-init ContainerdCommit:{ID:773c489c9c1b21a6d78b5c538cd395416ec50f88 Expected:773c489c9c1b21a6d78b5c538cd395416ec50f88} RuncCommit:{ID:4fc53a81fb7c994640722ac585fa9ca548971871 Expected:4fc53a81fb7c994640722ac585fa9ca548971871} InitCommit:{ID:949e6fa Expected:949e6fa} SecurityOptions:[name=apparmor name=seccomp,profile=default]}
+I0717 15:23:26.114531    8117 docker_service.go:225] Setting cgroupDriver to cgroupfs
+I0717 15:23:26.135505    8117 remote_runtime.go:43] Connecting to runtime service unix:///var/run/dockershim.sock
+I0717 15:23:26.139461    8117 kuberuntime_manager.go:175] Container runtime docker initialized, version: 18.03.1-ce, apiVersion: 1.37.0
+I0717 15:23:26.156785    8117 server.go:721] Started kubelet v1.8.15
+E0717 15:23:26.157071    8117 kubelet.go:1240] Image garbage collection failed once. Stats initialization may not have completed yet: failed to get imageFs info: unable to find data for container /
+W0717 15:23:26.157124    8117 kubelet.go:1324] No api server defined - no node status update will be sent.
+I0717 15:23:26.157656    8117 kubelet_node_status.go:280] Setting node annotation to enable volume controller attach/detach
+I0717 15:23:26.160095    8117 server.go:128] Starting to listen on 0.0.0.0:10250
+I0717 15:23:26.160956    8117 server.go:296] Adding debug handlers to kubelet server.
+I0717 15:23:26.169974    8117 fs_resource_analyzer.go:66] Starting FS ResourceAnalyzer
+I0717 15:23:26.170025    8117 status_manager.go:136] Kubernetes client is nil, not starting status manager.
+I0717 15:23:26.170040    8117 kubelet.go:1773] Starting kubelet main sync loop.
+I0717 15:23:26.170092    8117 kubelet.go:1784] skipping pod synchronization - [container runtime is down PLEG is not healthy: pleg was last seen active 2562047h47m16.854775807s ago; threshold is 3m0s]
+W0717 15:23:26.170547    8117 container_manager_linux.go:869] CPUAccounting not enabled for pid: 8117
+W0717 15:23:26.170568    8117 container_manager_linux.go:872] MemoryAccounting not enabled for pid: 8117
+E0717 15:23:26.170679    8117 container_manager_linux.go:603] [ContainerManager]: Fail to get rootfs information unable to find data for container /
+I0717 15:23:26.170714    8117 volume_manager.go:246] Starting Kubelet Volume Manager
+I0717 15:23:26.217660    8117 factory.go:356] Registering Docker factory
+W0717 15:23:26.217699    8117 manager.go:265] Registration of the rkt container factory failed: unable to communicate with Rkt api service: rkt: cannot tcp Dial rkt api service: dial tcp [::1]:15441: connect: connection refused
+W0717 15:23:26.217813    8117 manager.go:276] Registration of the crio container factory failed: Get http://%2Fvar%2Frun%2Fcrio.sock/info: dial unix /var/run/crio.sock: connect: no such file or directory
+I0717 15:23:26.217849    8117 factory.go:54] Registering systemd factory
+I0717 15:23:26.218186    8117 factory.go:86] Registering Raw factory
+I0717 15:23:26.218514    8117 manager.go:1140] Started watching for new ooms in manager
+I0717 15:23:26.219136    8117 manager.go:311] Starting recovery of all containers
+I0717 15:23:26.398751    8117 manager.go:316] Recovery completed
+I0717 15:23:26.506813    8117 kubelet_node_status.go:280] Setting node annotation to enable volume controller attach/detach
+E0717 15:23:26.547187    8117 summary.go:92] Failed to get system container stats for "/user.slice/user-1000.slice/session-c2.scope": failed to get cgroup stats for "/user.slice/user-1000.slice/session-c2.scope": failed to get container info fo
+
+
+
+
+user@nodea:~/kubelet$ docker container ls --no-trunc --format "table {{.Image}}\t{{.CreatedAt}}\t{{.Status}}"
+IMAGE                                                                           CREATED AT                      STATUS
+nginx@sha256:41ad73a4e5f7b4c6e33b5cd1403b04fd71e871c820b40e67008bf2f130676a3c   2018-07-17 15:23:37 -0700 PDT   Up 9 minutes
+gcr.io/google_containers/pause-amd64:3.0                                        2018-07-17 15:23:31 -0700 PDT   Up 9 minutes
+user@nodea:~/kubelet$ docker container inspect \
+> $(docker container ls --filter=ancestor=nginx -q) | jq -r '.[].Config.Labels'
+{
+  "annotation.io.kubernetes.container.hash": "30f2a656",
+  "annotation.io.kubernetes.container.ports": "[{\"containerPort\":80,\"protocol\":\"TCP\"}]",
+  "annotation.io.kubernetes.container.restartCount": "0",
+  "annotation.io.kubernetes.container.terminationMessagePath": "/dev/termination-log",
+  "annotation.io.kubernetes.container.terminationMessagePolicy": "File",
+  "annotation.io.kubernetes.pod.terminationGracePeriod": "30",
+  "io.kubernetes.container.logpath": "/var/log/pods/7a10faf463ba8ea1fbe54aadbdf10f6d/nginx_0.log",
+  "io.kubernetes.container.name": "nginx",
+  "io.kubernetes.docker.type": "container",
+  "io.kubernetes.pod.name": "nginx-nodea",
+  "io.kubernetes.pod.namespace": "default",
+  "io.kubernetes.pod.uid": "7a10faf463ba8ea1fbe54aadbdf10f6d",
+  "io.kubernetes.sandbox.id": "e3de5a5ae327eee29994814b490a26bbc6311b66bacb441fb6e84e97296009d7",
+  "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+}
 user@nodea:~/kubelet$ 

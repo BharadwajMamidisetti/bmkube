@@ -54,5 +54,46 @@ Ans :
 	 --file-check-frequency=20s  - duration between checking config files or new data.
 	 
 	 
-	 
+4. Kubelet & HTTP Server.
+
+The Kubelet has its own REST API and can be run as a standalone server when appropriate.  You can request information including pod details --/pods  and overall node status -- /healthz
+
+The REST endpoint on the kubelet is enabled by default but you can disable it with the --enable-server=false (switch)	 
+
+
+5. What is Kubelet backoff time ?
+
+When container fails , the kubelet checks the backoff time and if it has expired the kubelet tries to recreate the container.  The back off ensures that the kubelet will not try to restart the container more than once in the backoff time window.
+
+6. Explain about Schedular?
+
+Kubernetes Schedular significantly effects placement of pods.
+
+Kubernetes schedular is a 
+		* Policy-rch
+		* Topology aware
+		* workload-specific
+		
+		function that significantly impacts 
+		
+				--> availability
+				--> performance
+				--> capacity.
+				
+Schedular needs to take account
+	
+		--> Individual and collective resource requirements.
+		--> quality of service requirements
+		--> hardware/softare/policy constraints
+		--> affinity and anti-affinity specifications
+		--> data locality
+		--> inter-workload interference
+		--> deadlines
+		
+Workload specific requirements will be exposed through the API as necessary.
+
+
+
+
+
 	
