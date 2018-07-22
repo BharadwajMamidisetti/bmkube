@@ -99,6 +99,123 @@ Note that while many API servers can run in parallel ( etcd ensures state is alw
 
 For this reason - the schedular causes an election using etcd to determine which of the possibly several schedulars running will become the leader.  All other schedulars simply monitor the leader for failure.  If the leader fails , the remaining schedulars elect an new leader.
 
+===========================
+Services
+===========================
+8. How the Deployment objects and replicaset were created?
+
+Deployments --> create --> ReplicaSets --> Create --> replicas.
+
+
+9. Why do need replicas?
+
+The reason we have replicas is for scale and HA ( ie., to ensure that failure of one replica does not cause failure of the whole).
+
+
+10.  Why does service concept came ?
+
+We want to access web pages from any one of the pod , we don't care which pod serves the page.  Even one/more pods fails other pods should be available to service the requests.
+
+That means we can access to the "service" without being tied to the pod that implements it.
+
+In Kubernetes "Services" provide a layer of abstration on the top of a set of Pod replicas implementing the service. 
+
+Services objects identify the pods that implement them using a lable selector. 
+
+
+11. What is template hash ?
+
+Each pod you create in Kubernetes cotains a template hash.  
+
+This alows you to identify the template that was used to create the pod and to detect pods that are not implementing the current template.
+
+Example:
+
+user@nodea $ kubectl describe pod nginx-deployment-17137908-4w4q2 | grep -iA1 labels
+Labels: 	app=nginx
+            pod-template-ash=17137908
+			
+
+12. How does network hierarchy for "Services" looks like?
+
+Host IP address where VM ware images are running
+
+example :  
+
+	187.192.63.13
+
+
+NAT network------------------- which has subnet of 10.2.0.0/16
+
+allocates VM images  lets say nodea has ip of 10.2.0.4  and nodeb has ip of 10.2.0.5
+
+and Docker installation in those two vm ware machines has different docker network.
+
+where docker network start of 172.17.0.2  and 172.17.0.3  etc.,   which nodeb also can have same address. 
+
+
+13. What are the different ways you can configure Kubernetes cluster ?
+
+
+There are many ways to configure networking in Kubernetes Cluster.
+
+The simplest way is to statically configure each node in the cluster with a unique docker0 subnet and then to set routes in every node to all of the other node docker subnets.
+
+
+14. What is SDN ?
+
+Software defined networking ( SDN ) technology is an approch to cloud computing that facilitates network management and enables programmatically efficient network configuration in order to improve network performance and monitoring.
+
+
+
+
+15. What is VIP ?
+
+The Kubernetes service is created by the API server and is the VIP for the API server, allowing any pod in the cluster to easily lookup and call the API server.
+
+
+16.  From there Kube API server allocates VIP for the "Service" ?
+
+When we start Kube API server we provide below flag to it.
+
+--service-cluster-ip-range=10.0.0.0/16
+
+This range is the pool of IPs that the clusterIP pulls for service IPs. Often this IP is called VIP  ( virtual IP), Cluster IP or just IP.
+
+** This range must not overlap with your nodes subnet. 
+
+We have below networks.
+
+--> Nodes or VM machine network
+    10.2.0.0/16
+	
+--> docker0 container network  Or Pod subnet 
+	172.17.0.0/16
+	
+--> service-cluster-ip-range  or Service subnet
+	10.0.0.0/16
+	
+	
+==========
+Note: Virtual IP are not connected with real listening end points, rather they are hardware/softare table enties that redirect traffic some where else.  
+
+In Kubernetes the process responsible for creating the rules on every node to redirect VIP traffic is the "Kube Proxy".
+===========
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
 
 
 
