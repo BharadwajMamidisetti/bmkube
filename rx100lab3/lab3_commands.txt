@@ -1,0 +1,21 @@
+# If you wanted have all VM machine your machine come under a single network ( subnetmask)
+# add a NAT netowrk and assign subnet to it and enable DHCP on it.
+
+C:\Program Files\Oracle\VirtualBox>VBoxManage.exe natnetwork add --netname k8s --network "10.2.0.0/24" --enable --dhcp on
+
+After this open virtumal box - application and goto settings --> network --> NAT1 --> select NAT NETWORK --> select K8s
+
+do it for all vm machines you have so that they all come under same subnet mask addresses.
+
+=======================================
+Failed to install apt-transport-https and etc., as dpkg updating system in the background and i tried to run apt-get install -y ...
+
+which results in error /usr/bin/dpkg returned an error code (1)
+
+Executed below steps which resolve the problem.
+
+$sudo dpkg --purge --force-all libperl5.22
+$sudo apt-get update
+$sudo apt-get install -f
+$sudo apt-get -y install apt-transport-https ca-certificates curl
+                         
