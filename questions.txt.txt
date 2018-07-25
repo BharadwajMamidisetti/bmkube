@@ -202,7 +202,98 @@ Note: Virtual IP are not connected with real listening end points, rather they a
 In Kubernetes the process responsible for creating the rules on every node to redirect VIP traffic is the "Kube Proxy".
 ===========
 
+17. What is Kube-controller-manager ?
 
+--> It supports sernvices.
+--> gives ability to to scale the number of containers implementing our services.
+
+--> kcm takes care of deploying and scaling pods.
+
+18.  Kube-proxy responsible for?
+
+** Kube-proxy performs the functions necessary to create services.
+
+
+
+-----------------------------------
+
+18. What are the similarities between schedular and replication controller?
+
+Like the schedular, there can only be one active replication controller in a cluster.   Anytime a new replication controller starts it forces an election. Given that this is the first controller manager it becomes the leader and will actively begin managing Deployments, replicaSets and replication controllers.
+
+
+19. What are the resources that control manager look after ?
+
+v1 - replicationController.
+v1beta1 
+	- DaemonSet
+	- Job
+	- Deployment
+	- ReplicaSet
+	- HorizontalPodAutoscaler
+	- StatefulSet
+	
+20. How do you see system events.
+
+$ kubectl get events
+
+21. Describe Deployment -> flow?
+
+1. ControlManager--> looks for Deployment objects 
+-> Creates replicasets
+--> Creates two pods from the template 
+
+ and submit them to cluster.  
+
+2. Schedular is exclusively responsible for scheduling pods to Kubelets when pods are not pinned to a particular host.
+
+
+3. As soon as the Pods are scheduled, the Kublets begin pulling images and launching Pods.  
+
+4. When the pods are up the ReplicaSet reports sucessful Pod creation and when all Pods are up , the deployment reports successful scaling.
+
+22. List pods , ReplicaSets and deployment?
+
+$ kubectl get deployments, replicasets,pods
+
+
+
+23. Describe pod naming convention created using deployment object?
+
+example :
+
+nginx-deployment-17137908-4w4q2
+
+<nameMentionedInYaml>-<pod-template-hash>-<podHash>
+nginx-deployment        17137908           4w4q2
+
+
+
+24. What is uses of pod template hash?
+
+This allows you to identify the template that was used to create the pod and to detect pods that are not implementing the current template.
+
+
+25. Describe Service attributes?
+
+apiVersion
+kind
+metadata:
+	name: nsvc
+spec:
+	ports:
+		- port:2000
+		  targetPort:80
+		  
+selector:
+	app: nginx
+	
+$ kubectl get services
+
+$ kubectl describe service nsvc
+
+26. 
+		
 
 
 
