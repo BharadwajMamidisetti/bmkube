@@ -1,3 +1,1000 @@
-# To kill kubernetes process in one shot.
-sudo kill -SIGINT $(pidof kube-apiserver kubelet etcd)
-
+  771  kubectl create -f lab4_testdepl.yaml 
+  772  vim lab4_testdepl.yaml
+  773  kubectl create -f lab4_testdepl.yaml 
+  774  vim lab4_testdepl.yaml
+  775  kubectl create -f lab4_testdepl.yaml 
+  776  vim lab4_testdepl.yaml
+  777  kubectl create -f lab4_testdepl.yaml 
+  778  kubectl get deployments
+  779  kubectl rollout status deployment/nginx-deployment
+  780  kubectl get pods
+  781  kubectl delete pod nginx-25626
+  782  kubectl get pods
+  783  kubectl get rs
+  784  kubectl get pods
+  785  clear
+  786  kubectl get rs
+  787  kubectl get componentstatus
+  788  pwd
+  789  dir
+  790  vi nodea.kubeconfig 
+  791  kubectl config get-cluster
+  792  kubectl config
+  793  kubectl config get-clusters
+  794  kubectl config get-contexts
+  795  kubectl config view
+  796  kubectl config
+  797  kubectl config current-context
+  798  ~/k8s/_output/bin/kube-controller-manager --kubeconfig=nodea.kubeconfig
+  799  vi nodea.kubeconfig 
+  800  ~/k8s/_output/bin/kube-controller-manager --kubeconfig=nodea.kubeconfig
+  801  exit
+  802  curl -I 172.17.0.2
+  803  curl -s http://nodea:8080/api/v1/pods
+  804  clear
+  805  curl -s http://nodea:8080/api/v1/nodes
+  806  kubectl get nodes
+  807  kubectl get pods
+  808  curl -L http://localhost:10250/healthz
+  809  clear
+  810  ps -ef | grep kubelet
+  811  ps -ef | grep AAAkubelet
+  812  history
+  813  sudo ~/k8s/_output/bin/kubelet --kubeconfig=nodea.kubeconfig --allow-privileged=true --fail-swap-on=false
+  814  kubectl get nodes
+  815  pwd
+  816  cd scripts/
+  817  dir
+  818  vi nodea.kubeconfig 
+  819  sudo ~/k8s/_output/bin/kubelet --kubeconfig=nodea.kubeconfig --allow-privileged=true --fail-swap-on=false
+  820  exit
+  821  ping yahoo.com
+  822  docker images
+  823  kubectl get pods
+  824  exit
+  825  history
+  826  ~/k8s/_output/bin/kube-scheduler --master=http://nodea:8080
+  827  exit
+  828  history
+  829  pwd
+  830  sudo ~/k8s/_output/bin/kube-apiserver --etcd-servers=http://localhost:2379 --service-cluster-ip-range=10.2.0.0/16 --insecure-bind-address=0.0.0.0
+  831  exit
+  832  ls
+  833  etcd
+  834  exit
+  835  sudo poweroff
+  836  exit
+  837  cd ..
+  838  vi .bashrc
+  839  ps -aefo comm
+  840  kubectl get systemcomponents
+  841  kubectl version
+  842  kubectl cluster-info
+  843  kubectl get componentstatus
+  844  kubectl get nodes
+  845  kubectl config get-context
+  846  kubectl config current-context
+  847  ls
+  848  cd scripts/
+  849  dir
+  850  kubectl create -f lab4_testdepl.yaml 
+  851  kubectl get deploy,rs,pod
+  852  kubectl describe deploy po/nginx-deployment-6d8f46cfb7-946fm
+  853  kubectl describe deployment nginx-deployment-6d8f46cfb7-946fm
+  854  kubectl describe deploy nginx-deployment-6d8f46cfb7-946fm
+  855  kubectl get deployment
+  856  kubectl get pods
+  857  kubectl describe pod nginx-deployment-6d8f46cfb7-946fm
+  858  kubectl describe pod nginx-deployment-6d8f46cfb7-d6xfd
+  859  kubectl describe pod nginx-deployment-6d8f46cfb7-946fm
+  860  kubectl describe pod nginx-deployment-6d8f46cfb7-d6xfd
+  861  kubectl get pods
+  862  kubectl describe pod nginx-deployment-6d8f46cfb7-mzwb9
+  863  ls
+  864  vi nsvc.yaml 
+  865  kubectl create -f nsvc.yaml 
+  866  kubectl get svc
+  867  kubectl describe svc nsvc
+  868  ping 172.17.0.2
+  869  ping 172.17.0.3
+  870  ping 172.17.0.4
+  871  ping 172.18.0.2
+  872  curl -I  172.18.0.2
+  873  curl -I  172.17.0.2
+  874  curl -I  172.17.0.3
+  875  curl 10.2.201.90:2000
+  876  sudo iptables -L -vn -t nat
+  877  clear
+  878  ls
+  879  ps -aefo comm
+  880  kubectl get svc
+  881  nslookup nsvc
+  882  vi /etc/resolv.conf 
+  883  cd ..
+  884  ls -l ~/k8s/cluster/addons/dns/
+  885  pwd
+  886  cd scripts/
+  887  cd ..
+  888  mkdir kubedns
+  889  cd kubedns/
+  890  clear
+  891  vim dnsdep.yaml
+  892  ls -l ~/k8s/cluster/addons/dns/
+  893  vim ~/k8s/cluster/addons/dns/kubedns-cm.yaml 
+  894  vim ~/k8s/cluster/addons/dns/kubedns-controller.yaml.base 
+  895  vim ~/k8s/cluster/addons/dns/kubedns-controller.yaml.in
+  896  vim ~/k8s/cluster/addons/dns/kubedns-controller.yaml.sed
+  897  vim ~/k8s/cluster/addons/dns/kubedns-sa.yaml 
+  898  vim ~/k8s/cluster/addons/dns/kubedns-svc.yaml.base 
+  899  vim ~/k8s/cluster/addons/dns/README.md 
+  900  kubectl get namespace
+  901  kubectl delete service nsvc
+  902  kubectl delete deploy nginx-deployment
+  903  docker images
+  904  history
+  905  docker container rm $(docker container stop $(docker container ls -qa))
+  906  docker container ls -qa
+  907  exit
+  908  kubectl get nodes
+  909  exit
+  910  set-title "Kube-proxy"
+  911  sudo ~/k8s/_output/bin/kube-proxy --write-config-to=kube-proxy-config
+  912  history
+  913  vim kube-proxy-config 
+  914  head kube-proxy-config 
+  915  vim kube-proxy-config 
+  916  sudo vim kube-proxy-config 
+  917  sudo ~/k8s/_output/bin/kube-proxy --config=kube-proxy-config
+  918  clear
+  919  history
+  920  sudo ~/k8s/_output/bin/kube-proxy --kube-config=kube-proxy-config
+  921  clear
+  922  sudo ~/k8s/_output/bin/kue-proxy --kube-config=kube-proxy-config
+  923  sudo ~/k8s/_output/bin/kube-proxy --kubeconfig=kube-proxy-config
+  924  ls
+  925  vi kube-proxy-config 
+  926  history
+  927  vi kube-proxy-config 
+  928  sudo ~/k8s/_output/bin/kube-proxy --kubeconfig=kube-proxy-config
+  929  clear
+  930  sudo ~/k8s/_output/bin/kube-proxy --config=kube-proxy-conf
+  931  vim kube-proxy-config 
+  932  sudo ~/k8s/_output/bin/kube-proxy --master nodea:8080 --config=kube-proxy-config
+  933  history
+  934  sudo ~/k8s/_output/bin/kube-proxy --master nodea:8080 --config=kube-proxy-config
+  935  exit
+  936  kubectl get componentstatus
+  937  kubectl get svc
+  938  ping 10.2.201.90
+  939  curl 10.2.201.90:2000
+  940  sudo iptables -L -nv -t nat
+  941  sudo iptables -L -nv -t nat | grep 10.2.201.90
+  942  history
+  943  clear
+  944  ls
+  945  sudo iptables -L -nv -t nat | grep 10.2.201.90
+  946  sudo iptables -L -nv -t nat | grep -A4 'Chain KUBE-SVC-254CYKZ73JNCZ5NW'
+  947  sudo iptables -L -nv -t nat | grep -A4 'Chain KUBE-SEP-EQF2LSLAGEAUQTSP'
+  948  sudo iptables -L -nv -t nat | grep -A4 'Chain KUBE-SEP-2YXAMM7IVAYA72O7'
+  949  curl -I 10.2.201.90:2000
+  950  history
+  951  exit
+  952  cd ..
+  953  ps -aefo comm
+  954  set-title "Kubelet-nodea"
+  955  sudo ~/k8s/_output/bin/kubelet --kubeconfig=nodea.kubeconfig --allow-privileged=true --fail-swap-on=false
+  956  pwd
+  957  cd scripts/
+  958  sudo ~/k8s/_output/bin/kubelet --kubeconfig=nodea.kubeconfig --allow-privileged=true --fail-swap-on=false
+  959  exit
+  960  set-title "Schedular"
+  961  ~/k8s/_output/bin/kube-scheduler --master=http://nodea:8080
+  962  exit
+  963  set-title "ControlManager"
+  964  ~/k8s/_output/bin/kube-controller-manager --kubeconfig=nodea.kubeconfig
+  965  cd scripts/
+  966  ~/k8s/_output/bin/kube-controller-manager --kubeconfig=nodea.kubeconfig
+  967  exit
+  968  set-title "api-server"
+  969  ls
+  970  sudo ~/k8s/_output/bin/kube-apiserver --etcd-servers=http://localhost:2379 --service-cluster-ip-range=10.2.0.0/16 --insecure-bind-address=0.0.0.0
+  971  exit
+  972  dir
+  973  ls la
+  974  ls -la
+  975  vim .bashrc
+  976  set-title "api-server"
+  977  bash
+  978  exit
+  979  ip a
+  980  ip route
+  981  ping nodeb
+  982  ping nodea
+  983  ping 172.17.0.1
+  984  ping 172.18.0.1
+  985  traceroute 172.18.0.1
+  986  sudo apt-get install traceroute
+  987  traceroute 172.18.0.1
+  988  traceroute 10.2.0.4
+  989  traceroute 172.17.0.1
+  990  traceroute 172.18.0.1
+  991  sudo iptables -L -vn -t filter
+  992  ip route
+  993  sudo ip route add 172.18.0.0/16 via 10.2.0.4
+  994  ip route
+  995  ping 172.18.0.1
+  996  ping 172.18.0.2
+  997  curl 172.18.0.2
+  998  docker container ls
+  999  docker container run -d nginx
+ 1000  docker container ls
+ 1001  docker container inspect f02db98b759b
+ 1002  ping 172.17.0.2
+ 1003  curl 172.17.0.2
+ 1004  sudo iptables -L -vn -t filter
+ 1005  ip a
+ 1006  sudo iptables -A FORWARD -i enp0s3 -d 172.17.0.0/16 -j ACCEPT
+ 1007  docker container rm $(docker container stop $(docker container ls -qa))
+ 1008  ps -aefo comm
+ 1009  clear
+ 1010  dir
+ 1011  etcd
+ 1012  exit
+ 1013  sudo poweroff
+ 1014  ls
+ 1015  sudo apt install remmina
+ 1016  remmina
+ 1017  ifconfig
+ 1018  sudo poweroff
+ 1019  ping 192.168.0.22
+ 1020  tar -C ~/k8s/_output/local/bin/linux/amd64/ -cf - . | nc emech 7000
+ 1021  tar -C ~/k8s/_output/local/bin/linux/amd64/ -cf - . | nc 192.168.0.22 7000
+ 1022  sudo poweroff
+ 1023  ps -aefo comm
+ 1024  ls
+ 1025  pwd
+ 1026  vim kstart.sh
+ 1027  cd /var/lib
+ 1028  ls
+ 1029  Hi yyes
+ 1030  cd /var/lib/etcd
+ 1031  cd /var/lib/
+ 1032  dir
+ 1033  cd etcd
+ 1034  cd ~
+ 1035  dir
+ 1036  vi kstart.sh 
+ 1037  ./kstart.sh
+ 1038  sh kstart.sh 
+ 1039  ls
+ 1040  clear
+ 1041  sh kstart.sh 
+ 1042  ls
+ 1043  ps -ef | grep etcd
+ 1044  tail -f etcd.log 
+ 1045  kill -SIGTERM $(pidof etcd)
+ 1046  kill -n SIGTERM $(pidof etcd)
+ 1047  kill -s SIGTERM $(pidof etcd)
+ 1048  pidof etcd
+ 1049  ls
+ 1050  history
+ 1051  $(pidof etcd)
+ 1052  ps -ef | grep etcd
+ 1053  ls
+ 1054  vi etcd.log 
+ 1055  kill SIGINT $(pidof etcd)
+ 1056  etcd
+ 1057  dir
+ 1058  $(pidof etcd)
+ 1059  pidof etcd
+ 1060  sudo kill SIGINT $(pidof etcd)
+ 1061  history
+ 1062  sudo kill -SIGINT $(pidof etcd)
+ 1063  sh kstart.sh 
+ 1064  ls
+ 1065  tail -f etcd.log 
+ 1066  vi etcd.log 
+ 1067  vi kstart.sh 
+ 1068  vi knode.sh
+ 1069  ls
+ 1070  kill -SIGINT $(pidof etcd)
+ 1071  clear
+ 1072  ps -aeof comm
+ 1073  history
+ 1074  ps -aefo comm
+ 1075  ls
+ 1076  ls -ltrh
+ 1077  date
+ 1078  sh kstart.sh 
+ 1079  ps -aefo comm
+ 1080  ps -aefo com
+ 1081  ps -aefo comm\
+ 1082  ps -aefo comm
+ 1083  ls
+ 1084  cat etcd.log 
+ 1085  cat kube-apiserver.log 
+ 1086  clear
+ 1087  ls
+ 1088  ls kube-controller-manager.log 
+ 1089  cat kube-controller-manager.log 
+ 1090  cat kube-schedular.log 
+ 1091  vi kstart.sh 
+ 1092  history
+ 1093  vi knode.sh 
+ 1094  ls
+ 1095  vi ~/scripts/nodea.kubeconfig 
+ 1096  vi kstart.sh 
+ 1097  ~/k8s/_output/bin/kube-controller-manager --kubeconfig=~/scripts/nodea.kubeconfig
+ 1098  ~/k8s/_output/bin/kube-controller-manager --kubeconfig=scripts/nodea.kubeconfig
+ 1099  vi kstart.sh 
+ 1100  ps -aefo comm
+ 1101  kill -SIGINT $(pidof kube-apiserver etcd)
+ 1102  sudo kill -SIGINT $(pidof kube-apiserver etcd)
+ 1103  ps -aefo comm
+ 1104  clear
+ 1105  sh kstart.sh 
+ 1106  ls
+ 1107  cat kube-controller-manager.log 
+ 1108  cat kube-schedular.log 
+ 1109  ls
+ 1110  vi kstart.sh 
+ 1111  cat kube-schedular.log 
+ 1112  vi kube-schedular.log 
+ 1113  vi kube-controller-manager.log 
+ 1114  vi kube-apiserver.log 
+ 1115  vi etcd.log 
+ 1116  kubectl get componentstatus
+ 1117  vi killkm.sh
+ 1118  sh killkm.sh 
+ 1119  ps -aefo comm
+ 1120  vi kstart.sh 
+ 1121  ps -ef | grep kube*
+ 1122  ls
+ 1123  kill -SIGINT $(pidof kube-scheduler)
+ 1124  kill -SIGINT $(pidof kube-controller-manager)
+ 1125  ps -ef
+ 1126  ps -ef | more
+ 1127  vi kstart.sh 
+ 1128  clear
+ 1129  ls
+ 1130  ps -ef | grep etcd
+ 1131  vi kstart.sh 
+ 1132  sh kstart.sh 
+ 1133  ls
+ 1134  vi etcd.log
+ 1135  ps -aefo comm
+ 1136  vi kube-controller-manager.log
+ 1137  vi kube-scheduler.log 
+ 1138  sudo kill -SIGINT $(pidof kube-controller)
+ 1139  sudo kill -SIGINT $(pidof kube-scheduler)
+ 1140  sudo kill -SIGINT $(pidof kube-apiserver)
+ 1141  sudo kill -SIGINT $(pidof etcd)
+ 1142  ps -aefo comm
+ 1143  ps -ef | grep kube-scheduler
+ 1144  pidof kube-scheduler
+ 1145  ps -ef | grep kube-controller
+ 1146  pidof kube-controller
+ 1147  pidof kube-controller-manager
+ 1148  sudo kill -SIGINT $(pidof kube-controller-manager)
+ 1149  ps -ef | grep kube-controller
+ 1150  kill -SIGINT 3743
+ 1151  ps -ef | grep kube-controller
+ 1152  ps -aefo comm
+ 1153  sudo kill -SIGINT 3743
+ 1154  ps -ef | grep kube-controller
+ 1155  sudo poweroff
+ 1156  vi kstart.sh 
+ 1157  ls
+ 1158  etcd
+ 1159  vi kstart.sh 
+ 1160  sh kstart.sh 
+ 1161  ps -aefo comm
+ 1162  ls
+ 1163  vi kube-controller-manager.log 
+ 1164  vi kube-scheduler.log 
+ 1165  dir
+ 1166  vi knode.sh 
+ 1167  ls scripts/
+ 1168  vi knode.sh 
+ 1169  sh knode.sh 
+ 1170  ls
+ 1171  cat kubelet
+ 1172  cat kubelet.log 
+ 1173  clear
+ 1174  ls
+ 1175  cat kube-proxy.log 
+ 1176  vi knode.sh 
+ 1177  pwd
+ 1178  ls ~/k8s/_output/bin/
+ 1179  ls ~/k8s/_output/bin/kube-proxy --kubeconfig=scripts/kube-proxy-config
+ 1180  ls ~/k8s/_output/bin/kube-proxy --config=scripts/kube-proxy-config
+ 1181  vi scripts/kube-proxy-config 
+ 1182  ~/k8s/_output/bin/kube-proxy --config=scripts/kube-proxy-config
+ 1183  ~/k8s/_output/bin/kube-proxy --kubeconfig=scripts/kube-proxy-config
+ 1184  ~/k8s/_output/bin/kube-proxy --config=scripts/kube-proxy-config
+ 1185  history
+ 1186  sudo ~/k8s/_output/bin/kube-proxy --master nodea:8080 --config=scripts/kube-proxy-config
+ 1187  vi knode.sh 
+ 1188  sh knode.sh 
+ 1189  vi kubelet
+ 1190  vi kubelet.log
+ 1191  cat kube-proxy.log 
+ 1192  clear
+ 1193  ps -aefo comm
+ 1194  pidof kube-controller
+ 1195  pidof kube-controller-manager
+ 1196  ls
+ 1197  vi killkm.sh 
+ 1198  kubectl get componentstatus
+ 1199  kubectl get cs
+ 1200  kubectl clusterinfo
+ 1201  kubectl cluster-info
+ 1202  kubectl cluster-info dump
+ 1203  kubectl get nodes
+ 1204  kubectl config view
+ 1205  clear
+ 1206  vi knode.sh 
+ 1207  kubectl config view
+ 1208  vi knode.sh 
+ 1209  kubectl config get-contexts
+ 1210  kubectl config get-cluster
+ 1211  kubectl config get-clusters
+ 1212  cd scripts/
+ 1213  dir
+ 1214  vi lab4_testdepl.yaml 
+ 1215  kubectl create -f lab4_testdepl.yaml 
+ 1216  kubectl get deploy,rs,pod
+ 1217  kubectl create -f nsvc.yaml 
+ 1218  kubectl get services
+ 1219  vim clientpod.yaml
+ 1220  kubectl create -f clientpod.yaml 
+ 1221  ls
+ 1222  docker images
+ 1223  kubectl get pods
+ 1224  kubectl delete pod clientpod
+ 1225  kubectl get pods
+ 1226  vi clientpod.yaml 
+ 1227  ping yahoo.com
+ 1228  ping -t yahoo.com
+ 1229  ping -c 25 yahoo.com
+ 1230  kubectl create -f clientpod.yaml 
+ 1231  kubectl get pods
+ 1232  :)
+ 1233  kubectl exec -it clientpod sh
+ 1234  ping 10.2.0.4
+ 1235  ip route
+ 1236  sudo ip route add 172.18.0.0/16 via 10.2.0.4
+ 1237  ping 172.18.0.2
+ 1238  curl 172.18.0.2
+ 1239  ip route
+ 1240  sudo iptables -L -vn -t filter
+ 1241  ping 172.18.0.2
+ 1242  iftop
+ 1243  ifconfig
+ 1244  sudo iptables -A FORWARD -i enp0s3 -d 172.17.0.0/16 -j ACCEPT
+ 1245  sudo iptables -L -vn -t filter
+ 1246  kubectl exec -it clientpod sh
+ 1247  ip route
+ 1248  history
+ 1249  kubectl exec -it clientpod sh
+ 1250  curl -I 10.3.104.150
+ 1251  dir
+ 1252  vi kube-proxy-config 
+ 1253  curl -I 10.3.104.150:2000
+ 1254  kubectl exec -it clientpod sh
+ 1255  clear
+ 1256  curl -I nsvc
+ 1257  vi /etc/resolv
+ 1258  vi /etc/resolv.conf 
+ 1259  clear
+ 1260  cd ..
+ 1261  cd ~/k8s/cluster/addons/dns
+ 1262  ls
+ 1263  cd ~
+ 1264  dir
+ 1265  mkdir kubedns
+ 1266  cd kubedns
+ 1267  dir
+ 1268  vi dnsdep.yaml 
+ 1269  vi killkm.sh
+ 1270  cd ..
+ 1271  dir
+ 1272  vi killkm.sh 
+ 1273  sh killkm.sh 
+ 1274  vi killkm.sh 
+ 1275  ps -ef | grep etcd
+ 1276  sudo poweroff
+ 1277  ls scripts/
+ 1278  sh build/run.sh make
+ 1279  exit
+ 1280  dir
+ 1281  ls
+ 1282  cd kubedns
+ 1283  dir
+ 1284  vim dnsdep.yaml 
+ 1285  kubectl get namespace
+ 1286  clear
+ 1287  ls
+ 1288  cd ..
+ 1289  dir
+ 1290  sh kstart.sh 
+ 1291  ps -aefo comm
+ 1292  kubectl get cs
+ 1293  kubectl cluster-info
+ 1294  kubectl get namespace
+ 1295  kubectl get nodes
+ 1296  ls
+ 1297  sh knode.sh 
+ 1298  ps -aefo comm
+ 1299  kubectl get nodes
+ 1300  ls
+ 1301  cd kubedns/
+ 1302  vim dnssvc.yaml
+ 1303  clear
+ 1304  dir
+ 1305  vi dnsdep.yaml 
+ 1306  vi dnssvc.yaml 
+ 1307  kubectl create -f dnsdep.yaml 
+ 1308  vi dnsdep.yaml 
+ 1309  yes
+ 1310  vi dnsdep.yaml 
+ 1311  yes
+ 1312  no
+ 1313  clear
+ 1314  vi dnsdep.yaml 
+ 1315  kubectl create -f dnsdep.yaml 
+ 1316  vi dnsdep.yaml 
+ 1317  go version
+ 1318  cd ..
+ 1319  dir
+ 1320  mkdir k811
+ 1321  cd k811
+ 1322  dir
+ 1323  git 
+ 1324  git clone https://github.com/kubernetes/kubernetes/tree/release-1.11
+ 1325  git clone https://github.com/kubernetes/kubernetes.git
+ 1326  ls
+ 1327  dir
+ 1328  cd kubernetes/
+ 1329  dir
+ 1330  make
+ 1331  sudo apt-get install go
+ 1332  cd ..
+ 1333  dir
+ 1334  cd ..
+ 1335  dir
+ 1336  wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
+ 1337  cd /usr/local
+ 1338  dir
+ 1339  cd go
+ 1340  dir
+ 1341  cd ..
+ 1342  dir
+ 1343  cd ~
+ 1344  ls
+ 1345  sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz 
+ 1346  go version
+ 1347  pwd
+ 1348  cd k811
+ 1349  dir
+ 1350  cd kubernetes/
+ 1351  dir
+ 1352  make
+ 1353  ls
+ 1354  cd ..
+ 1355  dir
+ 1356  rm -rf kubernetes/
+ 1357  dir
+ 1358  pwd
+ 1359  cd ..
+ 1360  dir
+ 1361  history
+ 1362  dir
+ 1363  cd k811
+ 1364  dir
+ 1365  git clone https://github.com/kubernetes/kubernetes.git
+ 1366  ping yahoo.com
+ 1367  git clone https://github.com/kubernetes/kubernetes.git
+ 1368  dir
+ 1369  ls
+ 1370  cd kubernetes/
+ 1371  dir
+ 1372  cd build
+ 1373  ls
+ 1374  cname
+ 1375  uname -a
+ 1376  vi run.sh
+ 1377  ls
+ 1378  cd ..
+ 1379  sh build/run.sh
+ 1380  sh build/run.sh make
+ 1381  sir
+ 1382  sh build/run.sh make
+ 1383  vi build/run.sh 
+ 1384  bash
+ 1385  exit
+ 1386  cd ..
+ 1387  dir
+ 1388  cd kubedns
+ 1389  dir
+ 1390  kubectl create -f dnsdep.yaml 
+ 1391  dir
+ 1392  exit
+ 1393  cd k811
+ 1394  dir
+ 1395  shell version
+ 1396  cd kubernetes/
+ 1397  dir
+ 1398  bash --posix
+ 1399  kubectl get pods
+ 1400  cd ../..
+ 1401  dir
+ 1402  sh killkm.sh 
+ 1403  ls
+ 1404  vi kube-apiserver.log 
+ 1405  kubectl get nodes
+ 1406  ls
+ 1407  vi nsvc.yaml 
+ 1408  kubectl cluster-info
+ 1409  pidof etcd
+ 1410  kubectl get view
+ 1411  kubectl config cs
+ 1412  kubectl -h
+ 1413  kubectl version
+ 1414  ps -ef | grep etcd
+ 1415  dir
+ 1416  pwd
+ 1417  ls
+ 1418  sh kstart.sh 
+ 1419  kubectl cluster-info
+ 1420  kubectl config view
+ 1421  kubectl get cs
+ 1422  kubectl get addons
+ 1423  kubectl addons list
+ 1424  kube-addons
+ 1425  pwd
+ 1426  dir
+ 1427  cd k8s
+ 1428  dir
+ 1429  cd cluster/
+ 1430  dir
+ 1431  pwd
+ 1432  cd ../,,
+ 1433  cd ../..
+ 1434  sh ~/k8s/cluster/kube-up.sh 
+ 1435  pwd
+ 1436  bash --posix
+ 1437  pwd
+ 1438  kubectl --namespace=kube-system scale deployment kube-dns --replicas=2
+ 1439  pwd
+ 1440  cd k8s
+ 1441  dir
+ 1442  pwd
+ 1443  cd cluster/
+ 1444  dir
+ 1445  cd addons/
+ 1446  dir
+ 1447  make
+ 1448  cd addon-manager/
+ 1449  dir
+ 1450  make
+ 1451  docker images
+ 1452  cd ~
+ 1453  dir
+ 1454  kubectl --namespace=kube-system scale deployment kube-dns --replicas=2
+ 1455  pwd
+ 1456  cd kube-dns
+ 1457  pwd
+ 1458  dir
+ 1459  cd kubedns
+ 1460  dir
+ 1461  kubectl get cs
+ 1462  kubectl create -f dnsdep.yaml 
+ 1463  vi dnsdep.yaml 
+ 1464  vi dnsdep_v1.yaml
+ 1465  kubectl create -f dnsdep_v1.yaml 
+ 1466  vi dnsdep_v1.yaml
+ 1467  kubectl create -f dnsdep_v1.yaml 
+ 1468  vi dnsdep_v1.yaml
+ 1469  kubectl create -f dnsdep_v1.yaml 
+ 1470  vi dnsdep_v1.yaml
+ 1471  kubectl create -f dnsdep_v1.yaml 
+ 1472  vi dnsdep_v1.yaml
+ 1473  kubectl create -f dnsdep_v1.yaml 
+ 1474  vi dnsdep_v1.yaml
+ 1475  kubectl create -f dnsdep_v1.yaml 
+ 1476  vi dnsdep_v1.yaml
+ 1477  kubectl create -f dnsdep_v1.yaml 
+ 1478  vi dnsdep_v1.yaml
+ 1479  kubectl create -f dnsdep_v1.yaml 
+ 1480  kubectl get deploy
+ 1481  kubectl get deploy --allnamespaces
+ 1482  kubectl get deploy --all-namespaces
+ 1483  kubectl get namespaces
+ 1484  kubectl get namespace
+ 1485  kubectl get pods -all-namespaces
+ 1486  kubectl get pods
+ 1487  kubectl get pods --all-namespaces
+ 1488  ping yahoo.com
+ 1489  kubectl get pods --all-namespaces
+ 1490  dir
+ 1491  cd ../..
+ 1492  dir
+ 1493  cd user
+ 1494  dir
+ 1495  vi kube-apiserver.log 
+ 1496  grep kube-dns *.log
+ 1497  kubectl get pods --all-namespaces
+ 1498  kubectl get deploy
+ 1499  kubectl get deploy --all-namespaces
+ 1500  dir
+ 1501  kubectl get pods
+ 1502  kubectl get nodes
+ 1503  kubectl get deploy --all-namespaces
+ 1504  kubectl get pods --all-namespaces
+ 1505  dir
+ 1506  sh knode.sh 
+ 1507  kubectl get pods --all-namespaces
+ 1508  kubectl get deploy --all-namespaces
+ 1509  kubectl get nodes
+ 1510  grep kube-dns | *.logs
+ 1511  history
+ 1512  grep kube-dns *.logs
+ 1513  pwd
+ 1514  dir
+ 1515  grep kube-dns *.log
+ 1516  kubectl get deploy --all-namespaces
+ 1517  kubectl get pods --all-namespaces
+ 1518  grep kube-dns *.log
+ 1519  pwd
+ 1520  dir
+ 1521  pwd
+ 1522  cd kubedns/
+ 1523  dir
+ 1524  vi dnsdep_v1.yaml 
+ 1525  grep kube-dns *.log
+ 1526  cd ..
+ 1527  grep kube-dns *.log
+ 1528  kubectl get pods
+ 1529  kubectl get pods --all-namespaces
+ 1530  kubectl describe pod kube-dns-79fdb654d8-wtnm9
+ 1531  grep kube-dns *.log
+ 1532  ls
+ 1533  vi kube-apiserver.log 
+ 1534  vi kube-scheduler.log 
+ 1535  pwd
+ 1536  cd kubedns
+ 1537  dir
+ 1538  vi dnsdep_v1.yaml 
+ 1539  kubectl get deploy
+ 1540  kubectl get deploy --all-namespaces
+ 1541  kubectl delete deploy kube-dns
+ 1542  ls
+ 1543  kubectl get cs
+ 1544  kubectl cluter-info
+ 1545  kubectl cluster-info
+ 1546  kubectl get pods
+ 1547  kubectl get pods --all-namespaces
+ 1548  kubectl get deploy --all-namespaces
+ 1549  kubectl delete deploy kube-dns
+ 1550  kubectl get deploy --all-namespaces
+ 1551  kubectl get pods --all-namespaces
+ 1552  kubectl get pods --all-namespaces -w
+ 1553  kubectl delete pod kube-dns-79fdb654d8-wtnm9
+ 1554  kubectl get pods --all-namespaces
+ 1555  kubectl get deploy --all-namespaces
+ 1556  kubectl delete deployment kube-dns --namespace=kube-system
+ 1557  kubectl get deploy --all-namespaces
+ 1558  kubectl get pods --all-namespaces
+ 1559  pwd
+ 1560  dir
+ 1561  vi dnsdep_v1.yaml 
+ 1562  kubectl create -f dnsdep_v1.yaml 
+ 1563  kubectl get pods --all-namespaces
+ 1564  kubectl get deploy --all-namespaces
+ 1565  kubectl get pods --all-namespaces
+ 1566  kubectl get deploy --all-namespaces
+ 1567  kubectl get pods --all-namespaces
+ 1568  ls
+ 1569  ps -ef | grep kube-scheduler
+ 1570  dir
+ 1571  cd ..
+ 1572  dir
+ 1573  vi kube-scheduler.log 
+ 1574  kubectl get pods --all-namespaces
+ 1575  kubectl describe pod 
+ 1576  pwd
+ 1577  kubectl describe pod kube-dns-85db6d9868-mmx9v --namespace=kube-system
+ 1578  clear
+ 1579  kubectl describe pod kube-dns-85db6d9868-mmx9v --namespace=kube-system
+ 1580  pwd
+ 1581  cd kubedns
+ 1582  dir
+ 1583  vi dnsdep_v1.yaml 
+ 1584  pwd
+ 1585  dir
+ 1586  vi dnssvc.yaml 
+ 1587  kubectl create -f dnssvc.yaml 
+ 1588  kubectl get services
+ 1589  kubectl get services --all-namespaces
+ 1590  kubectl describe service kube-dns
+ 1591  kubectl describe service kube-dns --namespace=kube-system
+ 1592  docker container ls
+ 1593  clear
+ 1594  docker container ls
+ 1595  docker container logs 786d2faf8e74
+ 1596  kubectl get services --all-namespaces
+ 1597  nslookup websvc.default.svc.cluster.local. 
+ 1598  nslookup websvc.default.svc.cluster.local. 172.17.0.2
+ 1599  nslookup websvc.default.svc.cluster.local. 172.17.0.3
+ 1600  kubectl get services --all-namespaces
+ 1601  kubectl describe service kube-dns --namespace=kube-system
+ 1602  nslookup 172.17.0.
+ 1603  docker container logs 786d2faf8e74
+ 1604  curl -I 172.17.0.2/readiness
+ 1605  curl -I 172.17.0.2:10053/readiness
+ 1606  nslookup websvc.default.svc.cluster.local. 172.17.0.2
+ 1607  clear
+ 1608  ls
+ 1609  vi dnsdep_v1.yaml 
+ 1610  kubectl describe service kube-dns --namespace=kube-system
+ 1611  curl -I 172.17.0.2:53
+ 1612  kubectl cluster-info dump
+ 1613  \uHI
+ 1614  kubectl cluster-info dump | grep websvc
+ 1615  kubectl cluster-info dump | grep LoadBalancer
+ 1616  kubectl cluster-info dump | grep svc
+ 1617  nslookup default.svc.cluster.local. 172.17.0.2
+ 1618  vi /etc/resolv.conf 
+ 1619  dig +short websvc.default.svc.cluster.local. @172.17.0.2
+ 1620  dig +short websvc.default.svc.cluster.local. @172.17.0.3
+ 1621  dig +short websvc.default.svc.cluster.local. @172.17.0.2
+ 1622  dig  websvc.default.svc.cluster.local. @172.17.0.2
+ 1623  dig  kubenetes.default.svc.cluster.local. @172.17.0.2
+ 1624  dig  kube-dns.kube-system.svc.cluster.local. @172.17.0.2
+ 1625  dig +short kube-dns.kube-system.svc.cluster.local. @172.17.0.2
+ 1626  ls
+ 1627  pwd
+ 1628  dir
+ 1629  cd ..
+ 1630  dir
+ 1631  cd scripts/
+ 1632  dir
+ 1633  kubectl get pods --all-namespaces
+ 1634  pwd
+ 1635  dir
+ 1636  vi lab4_testdepl.yaml 
+ 1637  kubectl create -f lab4_testdepl.yaml 
+ 1638  kubectl create -f nsvc.yaml 
+ 1639  kubectl get services --all-namespaces
+ 1640  kubectl get deploy  --all-namespaces
+ 1641  kubectl describe service nsvc
+ 1642  nslookup nsvc.default.svc.cluster.local. 172.17.0.2
+ 1643  dig +short kube-dns.kube-system.svc.cluster.local. @172.17.0.2
+ 1644  dig  kube-dns.kube-system.svc.cluster.local. @172.17.0.2
+ 1645  kubectl get nodes
+ 1646  dig  nsvc.default.svc.cluster.local. @172.17.0.2
+ 1647  kubectl get service
+ 1648  ping 172.17.0.2
+ 1649  sudo iptables -L -vn -filter
+ 1650  sudo iptables -L -vn -t filter
+ 1651  ipconfig
+ 1652  ifconfig
+ 1653  sudo iptables -A FORWARD -i enp0s3 -d 172.17.0.0/16 -j ACCEPT
+ 1654  ip route
+ 1655  sudo ip route add 172.18.0.0/16 via 10.2.0.4
+ 1656  ip route
+ 1657  pwd
+ 1658  dir
+ 1659  kubectl get pods
+ 1660  kubectl create -f clientpod.yaml 
+ 1661  kubectl get pods
+ 1662  kubectl describe pod clientpod
+ 1663  kubectl exec -it clientpod sh
+ 1664  dir
+ 1665  cd ..
+ 1666  dir
+ 1667  vim knode.sh 
+ 1668  cd scripts/
+ 1669  dir
+ 1670  vi nodea.kubeconfig 
+ 1671  kubectl exec -it clientpod sh
+ 1672  ps -ef | grep kubelet
+ 1673  sudo kill -SIGINT $(pidof kubelet)
+ 1674  ps -ef | grep kubelet
+ 1675  cd ..
+ 1676  sudo ~/k8s/_output/bin/kubelet \
+ 1677  ps -ef | grep kubelet
+ 1678  ls
+ 1679  cd scripts
+ 1680  dir
+ 1681  vi clientpod.yaml 
+ 1682  kubectl create -f clientpod.yaml 
+ 1683  kubectl get pods
+ 1684  kubectl get pods -wide
+ 1685  kubectl get pods -o wide
+ 1686  kubectl exec -it clientpod1 sh
+ 1687  ls
+ 1688  kubectl get pods
+ 1689  kubectl delete pod client pod
+ 1690  kubectl delete pod clientpod
+ 1691  kubectl get pods
+ 1692  kubectl get pods -o wide
+ 1693  kubectl -n default exec -ti clientpod1 nslookup kubernetes.default 10.3.0.1
+ 1694  kubectl -n default exec -ti clientpod1 nslookup kube-dns.kube-system.svc.cluster.local. 10.3.0.100
+ 1695  kubectl -n default exec -ti clientpod1 nslookup kube-dns.kube-system.svc.cluster.local. 172.17.0.2
+ 1696  vi clientpod.yaml 
+ 1697  kubectl delete pod clientpod1
+ 1698  kubectl delete pod clientpod
+ 1699  kubectl get pods
+ 1700  kubectl create -f clientpod.yaml 
+ 1701  kubectl describe pod clientpod1
+ 1702  kubectl -n default exec -ti busybox -- nslookup kubernetes.default
+ 1703  kubectl -n default exec -ti busybox --nslookup kubernetes.default
+ 1704  kubectl -n default exec -ti clientpod1 --nslookup kubernetes.default
+ 1705  kubectl -n default exec -ti clientpod1 -- nslookup kubernetes.default
+ 1706  kubectl -n default exec -ti clientpod1 -- nslookup nsvc.default.svc.cluster.local
+ 1707  kubectl -n default exec -ti clientpod1 sh
+ 1708  ls
+ 1709  kubectl get pods
+ 1710  kubectl exec nginx-deployment-6d8f46cfb7-drgsz cat /etc/resolv.conf
+ 1711  kubectl exec -ti nginx-deployment-6d8f46cfb7-drgsz sh
+ 1712  kubectl get deploy,rs,serv
+ 1713  kubectl get deploy,rs,services
+ 1714  kubectl delete deploy nginx-deployment
+ 1715  kubectl get deploy,rs,services
+ 1716  clear
+ 1717  kubectl get deploy,rs,services
+ 1718  kubectl delete service nsvc
+ 1719  kubectl get deploy,rs,services
+ 1720  kubectl get pods
+ 1721  kubectl delete pod clientpod1
+ 1722  kubectl get pods
+ 1723  kubectl get nodes
+ 1724  ls
+ 1725  cd ..
+ 1726  dir
+ 1727  sh killkm.sh 
+ 1728  ls
+ 1729  pidof etcd
+ 1730  sudo poweroff
+ 1731  ls
+ 1732  ifconfig
+ 1733  ping 172.20.10.3
+ 1734  ping yahoo.com
+ 1735  exit
+ 1736  sudo poweroff
+ 1737  ifconfig
+ 1738  ifdown
+ 1739  ifdown enp0s3
+ 1740  sudo ifdown enp0s3
+ 1741  sudo ifup enp0s3
+ 1742  sudo poweroff
+ 1743  ifconfig
+ 1744  kubectl cluster-info
+ 1745  ps -ef | grep etcd
+ 1746  dir
+ 1747  sh kstart.sh 
+ 1748  vi kstart.sh 
+ 1749  ps -aefo comm
+ 1750  clear
+ 1751  ls
+ 1752  vi knode.sh 
+ 1753  sh knode.sh 
+ 1754  vi knode.sh 
+ 1755  kubectl get nodes
+ 1756  vi knode.sh 
+ 1757  kubectl get nodes
+ 1758  history
+ 1759  sudo apt-get install git-core
+ 1760  git
+ 1761  pwd
+ 1762  mkdir git
+ 1763  cd git
+ 1764  dir
+ 1765  git clone https://github.com/sudhabharadwajm/bmkube
+ 1766  dir
+ 1767  cd bmkube/
+ 1768  dir
+ 1769  vi commands.txt.txt 
+ 1770  history > commands.txt.txt 
