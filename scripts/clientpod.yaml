@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: clientpod1
+spec:
+  containers:
+    - name: clientpod1
+      image: busybox:1.28.4
+      command: ['/bin/tail' , '-f', '/dev/null']
+
